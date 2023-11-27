@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import Inputs from "../../common/Input/Input";
-import { insertUser } from "../../services/apiCalls";
+import { insertUser, loginUser } from "../../services/apiCalls";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Container } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { login } from "../userSlice";
 
 export const Register = () => {
   const [logindata, setLoginData] = useState({
@@ -14,6 +17,8 @@ export const Register = () => {
     username: "",
     birthday: "",
   });
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const inputHandler = (value, name) => {
     setLoginData((prevData) => ({
@@ -22,10 +27,18 @@ export const Register = () => {
     }));
   };
 
-  const handlerSend = () => {
+  const handlerSend = (event) => {
     insertUser("user/singup", logindata)
-      .then((dat) => console.log(dat))
+      .then((date) => {
+        loginUser("user/login", logindata)
+          .then((dat) => {
+            dispatch(login({ credentials: dat.data.token }));
+            navigate("/profile");
+          })
+          .catch((e) => console.log(e));
+      })
       .catch((e) => console.log(e.response.data));
+    event.preventDefault();
   };
   return (
     <>

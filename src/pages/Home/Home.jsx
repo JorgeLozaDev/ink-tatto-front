@@ -1,4 +1,4 @@
-import Input from "../../common/Input/Input";
+
 
 export const Home = () => {
 

@@ -6,14 +6,15 @@ import { useSelector } from "react-redux";
 import { userDetails } from "../userSlice";
 
 export const Profile = () => {
-  const token = sessionStorage.getItem("token");
+  // const token = sessionStorage.getItem("token");
   const [userData, setUserData] = useState({});
   const [edit, setEdit] = useState(false);
 
-  const rdxTiken = useSelector(userDetails);
+  const token = useSelector(userDetails);
+  // console.log(token.credentials)
 
   useEffect(() => {
-    profileUser("user/profile", token)
+    profileUser("user/profile", token.credentials)
       .then((e) => {
         setUserData(e.data);
       })
@@ -22,7 +23,7 @@ export const Profile = () => {
 
   const handleEditar = (e) => {
     setEdit(!edit);
-    // e.target.style.display= edit ? "block" : "none";
+    
     e.target.innerHTML = edit ? "editar" : "cancelar";
   };
 
@@ -40,7 +41,7 @@ export const Profile = () => {
   const handlerSubmit = (event) => {
     updateProfile("user/updateProfile", token, userData)
       .then((dat) => {
-        // console.log(dat.data.message);
+        
         console.log("entro");
       })
       .catch((e) => console.log(e.response));

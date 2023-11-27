@@ -33,9 +33,8 @@ export const Login = () => {
     }
   }, []);
 
-  useEffect(() => {
-    // console.log(logindata);
-  }, [logindata]);
+  useEffect(() => {}, [logindata]);
+  
 
   const handlerLogin = (event) => {
     loginUser("user/login", logindata)
