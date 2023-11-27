@@ -20,6 +20,14 @@ export const profileUser = async (endpoint, token) => {
   });
   return dataUser;
 };
+export const getMeetings = async (endpoint, token) => {
+  const mettingsUser = await axios.get(`${URL}${endpoint}`, {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
+  return mettingsUser;
+};
 
 export const updateProfile = async (endpoint, token, data) => {
   const info = {
