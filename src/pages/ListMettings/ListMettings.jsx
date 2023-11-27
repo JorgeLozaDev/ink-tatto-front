@@ -12,7 +12,8 @@ export const ListMeetings = () => {
 
   useEffect(() => {
     if (token.credentials.length == 0) {
-      navigate("/");
+      // navigate("/");
+      console.log(token);
     } else {
       getMeetings("meetings/", token.credentials)
         .then((met) => {
@@ -23,13 +24,13 @@ export const ListMeetings = () => {
         .catch((e) => console.log(e));
     }
   }, []);
+
   return (
     <>
-    <button >Añadir cita</button>
       {nextMeetings.length > 0 ? (
         <div>
-          {nextMeetings.map((meet)=>{
-            return(
+          {nextMeetings.map((meet) => {
+            return (
               <div key={meet.id}>
                 <p>{meet.client}</p>
                 <p>{meet.tattoArtist}</p>
@@ -39,7 +40,7 @@ export const ListMeetings = () => {
                 <p>{meet.isUp}</p>
                 <p>{meet.price}</p>
               </div>
-            )
+            );
           })}
         </div>
       ) : (
