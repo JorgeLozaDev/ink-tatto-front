@@ -20,7 +20,6 @@ export const ListMeetings = () => {
     } else {
       getMeetings("meetings/", token.credentials)
         .then((met) => {
-          // console.log(met.data);
           setNextMettings(met.data.upcomingMeetings);
           setPastMettings(met.data.pastMeetings);
         })
