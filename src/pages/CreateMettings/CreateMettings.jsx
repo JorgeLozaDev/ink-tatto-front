@@ -8,6 +8,7 @@ import CustomSelect from "../../common/CustomSelect/CustomSelect";
 import {
   checkArtistAvaiabilityDates,
   allArtistActives,
+  createMetting,
 } from "../../services/apiCalls";
 
 export const CreateMettings = () => {
@@ -68,8 +69,12 @@ export const CreateMettings = () => {
     checkArtistAvaiabilityDates("meetings/checkavailability", token, dataForm)
       .then((dat) => {
         console.log(dat);
-        // dispatch(login({ credentials: dat.data.token }));
-        // navigate("/profile");
+        createMetting("meetings/create-meeting", token, dataForm)
+          .then((met) => {
+            console.log(met);
+            navigate("/mettings");
+          })
+          .catch((e) => console.log(e));
       })
       .catch((e) => console.log(e.response.data));
     event.preventDefault();
@@ -125,7 +130,11 @@ export const CreateMettings = () => {
             </div>
           )}
 
-          <Button type="submit" variant="primary" disabled={isValid ? "false":"true"}>
+          <Button
+            type="submit"
+            variant="primary"
+            disabled={isValid ? false : true}
+          >
             Enviar
           </Button>
         </Form>

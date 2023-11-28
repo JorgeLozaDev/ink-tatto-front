@@ -1,0 +1,16 @@
+.citasGeneral {
+  text-align: center;
+  padding: 1em;
+}
+.cajasCitas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+}
+.cajasCitas div {
+  border: 1px solid black;
+  border-radius: 1em;
+  padding: 1em;
+}

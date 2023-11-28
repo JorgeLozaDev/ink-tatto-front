@@ -63,3 +63,11 @@ export const allArtistActives = async (endpoint, token) => {
   const artist = await axios.get(`${URL}${endpoint}`, { headers });
   return artist;
 };
+
+export const createMetting = async (endpoint, token, data) => {
+  const headers = {
+    Authorization: "Bearer " + token.credentials,
+  };
+  const metting = await axios.post(`${URL}${endpoint}`, data, { headers });
+  return metting;
+};
