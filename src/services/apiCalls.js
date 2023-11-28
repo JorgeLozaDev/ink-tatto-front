@@ -71,3 +71,21 @@ export const createMetting = async (endpoint, token, data) => {
   const metting = await axios.post(`${URL}${endpoint}`, data, { headers });
   return metting;
 };
+
+export const detailMetting = async (endpoint, token) => {
+  const headers = {
+    Authorization: "Bearer " + token.credentials,
+  };
+
+  const detail = await axios.get(`${URL}${endpoint}`, { headers });
+  return detail;
+};
+
+
+export const updateMetting = async (endpoint, token, data) => {
+  const headers = {
+    Authorization: "Bearer " + token.credentials,
+  };
+  const upmetting = await axios.put(`${URL}${endpoint}`, data, { headers });
+  return upmetting;
+};
