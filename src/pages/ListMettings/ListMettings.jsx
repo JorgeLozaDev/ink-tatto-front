@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { userDetails } from "../userSlice";
 import { useNavigate } from "react-router-dom";
 import { getMeetings } from "../../services/apiCalls";
+import { Button } from "react-bootstrap";
 
 export const ListMeetings = () => {
   const token = useSelector(userDetails);
@@ -11,8 +12,9 @@ export const ListMeetings = () => {
   const [pastMeetings, setPastMettings] = useState([]);
 
   useEffect(() => {
+    console.log(token);
     if (token.credentials.length == 0) {
-      // navigate("/");
+      navigate("/");
       console.log(token);
     } else {
       getMeetings("meetings/", token.credentials)
@@ -27,6 +29,7 @@ export const ListMeetings = () => {
 
   return (
     <>
+    <Button onClick={()=> navigate("/mettings/addMettings")}>Añadir cita</Button>
       {nextMeetings.length > 0 ? (
         <div>
           {nextMeetings.map((meet) => {

@@ -23,7 +23,7 @@ export const Header = () => {
               <Nav.Link href="/singup">Singup</Nav.Link>
               <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="/profile">Perfil</NavDropdown.Item>
-                <NavDropdown.Item href="/meetings">Appiments</NavDropdown.Item>
+                <NavDropdown.Item href="/mettings">Citas</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">Item 3</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={handlerLogOut}>

@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { userDetails } from "../userSlice";
 
 export const Profile = () => {
-  // const token = sessionStorage.getItem("token");
+  
   const [userData, setUserData] = useState({});
   const [edit, setEdit] = useState(false);
 

@@ -45,3 +45,21 @@ export const updateProfile = async (endpoint, token, data) => {
   const updateUser = await axios.put(`${URL}${endpoint}`, info, { headers });
   return updateUser;
 };
+
+export const checkArtistAvaiabilityDates = async (endpoint, token, data) => {
+  const headers = {
+    Authorization: "Bearer " + token.credentials,
+  };
+
+  const availability = await axios.post(`${URL}${endpoint}`, data, { headers });
+  return availability;
+};
+
+export const allArtistActives = async (endpoint, token) => {
+  const headers = {
+    Authorization: "Bearer " + token.credentials,
+  };
+
+  const artist = await axios.get(`${URL}${endpoint}`, { headers });
+  return artist;
+};

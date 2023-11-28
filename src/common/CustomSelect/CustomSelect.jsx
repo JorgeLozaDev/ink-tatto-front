@@ -1,7 +1,7 @@
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 
-const Input = ({ placeholder, type, name, handler, value, disabled,max,min,className }) => {
+const Select = ({ options, placeholder, name, handler, value, disabled, className }) => {
   const handleChange = (event) => {
     const { value } = event.target;
     handler(value, name);
@@ -10,20 +10,23 @@ const Input = ({ placeholder, type, name, handler, value, disabled,max,min,class
   return (
     <>
       <InputGroup className="mb-3">
-        <Form.Control
-          placeholder={placeholder}
-          type={type}
+        <Form.Select
           name={name}
           value={value}
-          max={max}
-          min={min}
           onChange={(e) => handleChange(e)}
           className={className}
           disabled={disabled}
-        />
+        >
+          <option value="" disabled>{placeholder}</option>
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </Form.Select>
       </InputGroup>
     </>
   );
 };
 
-export default Input;
+export default Select;
