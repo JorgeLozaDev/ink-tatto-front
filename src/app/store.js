@@ -8,7 +8,7 @@ import mettingSlice from "../pages/mettingSlice";
 
 const reducers = combineReducers({
   user: userSlice,
-  meeting: mettingSlice,
+  metting: mettingSlice,
 });
 
 const persistConfig = {

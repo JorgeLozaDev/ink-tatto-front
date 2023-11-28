@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const mettingSlice = createSlice({
     name: 'metting',
     initialState: {
-      credentials: {}
+      idMetting: {}
     },
     reducers: {
       detailMettingId: (state, action) => {
@@ -23,6 +23,6 @@ export const mettingSlice = createSlice({
     
 });
 
-export const { login, logout } = mettingSlice.actions;
+export const { detailMettingId, removeIdMetting } = mettingSlice.actions;
 export const mettingDetails = (state) => state.metting;
 export default mettingSlice.reducer;
