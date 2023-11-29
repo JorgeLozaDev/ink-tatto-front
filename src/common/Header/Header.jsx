@@ -24,10 +24,15 @@ export const Header = () => {
               <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="/profile">Perfil</NavDropdown.Item>
                 <NavDropdown.Item href="/mettings">Citas</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Item 3</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3"></NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={handlerLogOut}>
                   Log out
+                </NavDropdown.Item>
+              </NavDropdown>
+              <NavDropdown title="admin" id="collasible-nav-dropdown">
+                <NavDropdown.Item href="/admin/listusers">
+                  Lista de usuarios
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>

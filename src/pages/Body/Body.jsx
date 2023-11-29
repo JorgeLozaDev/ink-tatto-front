@@ -6,6 +6,7 @@ import { Profile } from "../Profile/Profile";
 import { ListMeetings } from "../ListMettings/ListMettings";
 import { CreateMettings } from "../CreateMettings/CreateMettings";
 import { DetailMetting } from "../DetailMetting/DetailMetting";
+import { AdminListUsers } from "../AdminListUsers/AdminListUsers";
 
 export const Body = () => {
   return (
@@ -18,6 +19,7 @@ export const Body = () => {
       <Route path="/mettings" element={<ListMeetings />} />
       <Route path="/mettings/addMettings" element={<CreateMettings />} />
       <Route path="/metting/details" element={<DetailMetting />} />
+      <Route path="/admin/listusers" element={<AdminListUsers />} />
     </Routes>
   );
 };
