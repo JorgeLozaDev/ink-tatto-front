@@ -72,6 +72,19 @@ export const ListMeetings = () => {
     event.preventDefault();
   };
 
+  const formatDateTime = (dateTimeString) => {
+    const options = {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+
+    const dateTime = new Date(dateTimeString);
+    return dateTime.toLocaleString("es-ES", options);
+  };
+
   return (
     <>
       <Button onClick={() => navigate("/mettings/addMettings")}>
@@ -144,19 +157,17 @@ export const ListMeetings = () => {
             {mettingsAfterFilter.map((filterMeet) => {
               return (
                 <div key={filterMeet._id}>
-                  <p>{filterMeet.client}</p>
-                  <p>{filterMeet.tattooArtist}as</p>
-                  <p>{filterMeet.dateMetting}</p>
-                  <p>{filterMeet.dateMettingEnd}</p>
-                  <p>{filterMeet.typeIntervention}</p>
-                  <p>{filterMeet.isUp}</p>
-                  <p>{filterMeet.price}</p>
-                  <Button
+                  <p>Artista: {filterMeet.tattooArtist}</p>
+                  <p>Fecha inicio: {formatDateTime(filterMeet.dateMetting)}</p>
+                  <p>Fecha fin: {formatDateTime(filterMeet.dateMettingEnd)}</p>
+                  <p>Tipo intervención:   {filterMeet.typeIntervention}</p>
+                  <p>Precio: {filterMeet.price}</p>
+                  {/* <Button
                     value={filterMeet._id}
                     onClick={(e) => handleDetailMetting(e)}
                   >
                     Editar
-                  </Button>
+                  </Button> */}
                 </div>
               );
             })}
@@ -171,13 +182,12 @@ export const ListMeetings = () => {
                 {nextMeetings.map((meet) => {
                   return (
                     <div key={meet._id}>
-                      <p>{meet.client}</p>
-                      <p>{meet.tattooArtist}as</p>
-                      <p>{meet.dateMetting}</p>
-                      <p>{meet.dateMettingEnd}</p>
-                      <p>{meet.typeIntervention}</p>
-                      <p>{meet.isUp}</p>
-                      <p>{meet.price}</p>
+                      <p>Artista: {meet.tattooArtist}</p>
+                      <p>Fecha inicio: {formatDateTime(meet.dateMetting)}</p>
+                      <p>Fecha fin: {formatDateTime(meet.dateMettingEnd)}</p>
+                      <p>Tipo intervención: {meet.typeIntervention}</p>
+
+                      <p>Precio: {meet.price}</p>
                       <Button
                         value={meet._id}
                         onClick={(e) => handleDetailMetting(e)}
@@ -203,8 +213,8 @@ export const ListMeetings = () => {
                   return (
                     <div key={cita._id}>
                       <p>Artista: {cita.tattooArtist}</p>
-                      <p>Fecha Inicio: {cita.dateMetting}</p>
-                      <p>Fecha Fin: {cita.dateMettingEnd}</p>
+                      <p>Fecha Inicio: {formatDateTime(cita.dateMetting)}</p>
+                      <p>Fecha Fin: {formatDateTime(cita.dateMettingEnd)}</p>
                       <p>Tipo de cita: {cita.typeIntervention}</p>
                       <p>Precio: {cita.price}</p>
                     </div>
@@ -220,61 +230,6 @@ export const ListMeetings = () => {
           )}
         </div>
       )}
-
-      {/* {nextMeetings.length > 0 ? (
-        <div className="citasGeneral">
-          <h3>PRÓXIMAS CITAS</h3>
-          <div className="cajasCitas">
-            {nextMeetings.map((meet) => {
-              return (
-                <div key={meet._id}>
-                  <p>{meet.client}</p>
-                  <p>{meet.tattooArtist}as</p>
-                  <p>{meet.dateMetting}</p>
-                  <p>{meet.dateMettingEnd}</p>
-                  <p>{meet.typeIntervention}</p>
-                  <p>{meet.isUp}</p>
-                  <p>{meet.price}</p>
-                  <Button
-                    value={meet._id}
-                    onClick={(e) => handleDetailMetting(e)}
-                  >
-                    Editar
-                  </Button>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      ) : (
-        <div className="citasGeneral">
-          <h3>PRÓXIMAS CITAS</h3>
-          <p>Aún no tienes próximas citas</p>
-        </div>
-      )}
-      {pastMeetings.length > 0 ? (
-        <div className="citasGeneral">
-          <h3>CITAS PASADAS</h3>
-          <div className="cajasCitas">
-            {pastMeetings.map((cita) => {
-              return (
-                <div key={cita._id}>
-                  <p>Artista: {cita.tattooArtist}</p>
-                  <p>Fecha Inicio: {cita.dateMetting}</p>
-                  <p>Fecha Fin: {cita.dateMettingEnd}</p>
-                  <p>Tipo de cita: {cita.typeIntervention}</p>
-                  <p>Precio: {cita.price}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      ) : (
-        <div className="citasGeneral">
-          <h3>PRÓXIMAS CITAS</h3>
-          <p>Aún no tienes citas pasadas</p>
-        </div>
-      )} */}
     </>
   );
 };
