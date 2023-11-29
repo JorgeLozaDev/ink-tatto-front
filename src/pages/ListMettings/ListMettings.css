@@ -8,9 +8,11 @@
   justify-items: center;
   align-items: center;
   justify-content: center;
+  gap: 1em;
 }
 .cajasCitas div {
   border: 1px solid black;
   border-radius: 1em;
   padding: 1em;
+  text-align: left;
 }

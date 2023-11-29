@@ -1,12 +1,22 @@
+import { useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 
-const Select = ({ options, placeholder, name, handler, value, disabled, className }) => {
+const Select = ({
+  options,
+  placeholder,
+  name,
+  handler,
+  value,
+  disabled,
+  className,
+}) => {
   const handleChange = (event) => {
     const { value } = event.target;
     handler(value, name);
   };
 
+  
   return (
     <>
       <InputGroup className="mb-3">
@@ -17,7 +27,10 @@ const Select = ({ options, placeholder, name, handler, value, disabled, classNam
           className={className}
           disabled={disabled}
         >
-          <option value="" disabled>{placeholder}</option>
+          {/* <option value="" disabled> */}
+          <option value="" >
+            {placeholder}
+          </option>
           {options.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
