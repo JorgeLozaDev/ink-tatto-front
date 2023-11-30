@@ -1,0 +1,16 @@
+.home {
+  background-image: url("../../../public/img/shop.jpg");
+  background-size: cover;
+  height: 92vh;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.home div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  color: white;
+}

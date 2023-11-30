@@ -11,7 +11,6 @@ export const Profile = () => {
   const [edit, setEdit] = useState(false);
 
   const token = useSelector(userDetails);
-  // console.log(token.credentials)
 
   useEffect(() => {
     profileUser("user/profile", token.credentials)
