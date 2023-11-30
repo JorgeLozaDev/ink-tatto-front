@@ -96,3 +96,11 @@ export const filterMettings = async (endpoint, token, data) => {
   const filter = await axios.post(`${URL}${endpoint}`, data, { headers });
   return filter;
 };
+
+export const getAllUsers = async (endpoint, token) => {
+  const headers = {
+    Authorization: "Bearer " + token.credentials,
+  };
+  const allUsers = await axios.get(`${URL}${endpoint}`, { headers });
+  return allUsers;
+};
