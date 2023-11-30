@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../userSlice";
 import { useSelector } from "react-redux";
 import { userDetails } from "../userSlice";
+import "./Login.css"
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ export const Login = () => {
   };
   return (
     <>
-      <Container>
+      <Container  fluid className="contenido login loginbg">
         <Form onSubmit={handlerLogin} method="post">
           <Inputs
             placeholder={"Email"}

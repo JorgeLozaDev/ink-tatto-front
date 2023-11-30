@@ -7,12 +7,12 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* --primary-color: #fff; */
-  /* override-colors */
+  --black: #000;
 }
 
 body {
   font-family: "Inknut Antiqua", serif;
+  background-color: var(--black);
 }
 
 .btn-primary {
@@ -23,6 +23,10 @@ body {
 .btn-primary:hover {
   background-color: gray;
   border-color: #fff;
+}
+
+.contenido{
+  height: 92vh;
 }
 @media (prefers-color-scheme: light) {
   :root {

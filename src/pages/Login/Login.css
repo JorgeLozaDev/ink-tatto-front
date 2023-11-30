@@ -1,0 +1,15 @@
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.loginbg{
+     background-image: url("../../../public/img/login-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: grayscale(100%);
+    opacity: .6;
+    
+}
