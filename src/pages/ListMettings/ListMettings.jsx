@@ -156,7 +156,7 @@ export const ListMeetings = () => {
           <div className="cajasCitas">
             {mettingsAfterFilter.map((filterMeet) => {
               return (
-                <div key={filterMeet._id}>
+                <div key={filterMeet._id} className="">
                   <p>Artista: {filterMeet.tattooArtist}</p>
                   <p>Fecha inicio: {formatDateTime(filterMeet.dateMetting)}</p>
                   <p>Fecha fin: {formatDateTime(filterMeet.dateMettingEnd)}</p>
