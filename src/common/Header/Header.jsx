@@ -14,7 +14,7 @@ export const Header = () => {
   const token = useSelector(userDetails);
   if (token.credentials) {
     const decode = jwtDecode(token.credentials);
-    console.log(decode);
+    // console.log(decode);
   }
   return (
     <>

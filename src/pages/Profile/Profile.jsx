@@ -4,9 +4,9 @@ import { Form, Button, Container } from "react-bootstrap";
 import Inputs from "../../common/Input/Input";
 import { useSelector } from "react-redux";
 import { userDetails } from "../userSlice";
+import "./Profile.css";
 
 export const Profile = () => {
-  
   const [userData, setUserData] = useState({});
   const [edit, setEdit] = useState(false);
 
@@ -22,7 +22,7 @@ export const Profile = () => {
 
   const handleEditar = (e) => {
     setEdit(!edit);
-    
+
     e.target.innerHTML = edit ? "editar" : "cancelar";
   };
 
@@ -40,7 +40,6 @@ export const Profile = () => {
   const handlerSubmit = (event) => {
     updateProfile("user/updateProfile", token, userData)
       .then((dat) => {
-        
         console.log("entro");
       })
       .catch((e) => console.log(e.response));
@@ -49,7 +48,7 @@ export const Profile = () => {
 
   return (
     <>
-      <Container>
+      <Container fluid className="contenido dataProfile">
         {edit ? (
           <Form onSubmit={handlerSubmit} method="post">
             <Inputs
@@ -94,19 +93,23 @@ export const Profile = () => {
             </Button>
           </Form>
         ) : userData.name ? (
-          <div>
-            <p>{userData.name}</p>
-            <p>{userData.lastname}</p>
-            <p>{userData.email}</p>
-            <p>{userData.username}</p>
-            <p>{userData.birthday}</p>
+          <div className="box">
+            <p>Nombre: {userData.name}</p>
+            <p>Apellidos: {userData.lastname}</p>
+            <p>Email: {userData.email}</p>
+            <p>Nombre de usuario: {userData.username}</p>
+            <p>Fecha de cumpleaños: {userData.birthday}</p>
+            <p className="text-center">
+              <Button variant="secondary" onClick={handleEditar}>
+                Editar
+              </Button>
+            </p>
           </div>
         ) : (
           <div>
             <p>Sin datos</p>
           </div>
         )}
-        <Button onClick={handleEditar}>Editar</Button>
       </Container>
     </>
   );

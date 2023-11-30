@@ -8,11 +8,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --black: #000;
+  --border-rad: 1em;
 }
 
 body {
   font-family: "Inknut Antiqua", serif;
-  background-color: var(--black);
 }
 
 .btn-primary {
@@ -25,7 +25,18 @@ body {
   border-color: #fff;
 }
 
-.contenido{
+.btn-secondary {
+  background-color: gray;
+  color: #fff;
+  border-color: #fff;
+}
+.btn-secondary:hover {
+  background-color: #fff;
+  border-color: var(--black);
+  color: var(--black);
+}
+
+.contenido {
   height: 92vh;
 }
 @media (prefers-color-scheme: light) {
