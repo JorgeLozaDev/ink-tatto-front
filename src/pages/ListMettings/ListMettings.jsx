@@ -36,6 +36,7 @@ export const ListMeetings = () => {
         .then((met) => {
           setNextMettings(met.data.upcomingMeetings);
           setPastMettings(met.data.pastMeetings);
+          // console.log(met);
         })
         .catch((e) => console.log(e));
     }
@@ -64,11 +65,11 @@ export const ListMeetings = () => {
   const handlerSearch = (event) => {
     filterMettings("meetings/filter", token, dataForm)
       .then((a) => {
-        console.log(a.data.meetings);
+        // console.log(a.data.meetings);
         setMettingsAfterFilter(a.data.meetings);
       })
       .catch((e) => console.log(e));
-    console.log(dataForm);
+    // console.log(dataForm);
     event.preventDefault();
   };
 
@@ -87,9 +88,16 @@ export const ListMeetings = () => {
 
   return (
     <>
-      <Button onClick={() => navigate("/mettings/addMettings")}>
-        Añadir cita
-      </Button>
+      <Container>
+        <p className="text-center py-3">
+          <Button
+            variant="secondary"
+            onClick={() => navigate("/mettings/addMettings")}
+          >
+            Añadir cita
+          </Button>
+        </p>
+      </Container>
 
       <Container>
         <Form method="post" onSubmit={handlerSearch}>
@@ -142,7 +150,7 @@ export const ListMeetings = () => {
               />
             </Col>
             <Col xs={12} md={2}>
-              <Button type="submit" variant="primary">
+              <Button type="submit" variant="secondary">
                 Buscar
               </Button>
             </Col>
@@ -153,14 +161,14 @@ export const ListMeetings = () => {
       {mettingsAfterFilter.length > 0 ? (
         <div className="citasGeneral">
           <h3>FILTRADO CITAS</h3>
-          <div className="cajasCitas">
+          <div className="cajasCitas ">
             {mettingsAfterFilter.map((filterMeet) => {
               return (
-                <div key={filterMeet._id} className="">
+                <div key={filterMeet._id} className="box">
                   <p>Artista: {filterMeet.tattooArtist}</p>
                   <p>Fecha inicio: {formatDateTime(filterMeet.dateMetting)}</p>
                   <p>Fecha fin: {formatDateTime(filterMeet.dateMettingEnd)}</p>
-                  <p>Tipo intervención:   {filterMeet.typeIntervention}</p>
+                  <p>Tipo intervención: {filterMeet.typeIntervention}</p>
                   <p>Precio: {filterMeet.price}</p>
                   {/* <Button
                     value={filterMeet._id}
@@ -178,7 +186,7 @@ export const ListMeetings = () => {
           {nextMeetings.length > 0 ? (
             <div className="citasGeneral">
               <h3>PRÓXIMAS CITAS</h3>
-              <div className="cajasCitas">
+              <div className="cajasCitas box">
                 {nextMeetings.map((meet) => {
                   return (
                     <div key={meet._id}>
@@ -208,10 +216,10 @@ export const ListMeetings = () => {
           {pastMeetings.length > 0 ? (
             <div className="citasGeneral">
               <h3>CITAS PASADAS</h3>
-              <div className="cajasCitas">
+              <div className="cajasCitas ">
                 {pastMeetings.map((cita) => {
                   return (
-                    <div key={cita._id}>
+                    <div key={cita._id} className="box">
                       <p>Artista: {cita.tattooArtist}</p>
                       <p>Fecha Inicio: {formatDateTime(cita.dateMetting)}</p>
                       <p>Fecha Fin: {formatDateTime(cita.dateMettingEnd)}</p>
