@@ -7,6 +7,7 @@ import { Container } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../userSlice";
+import "./Register.css";
 
 export const Register = () => {
   const [logindata, setLoginData] = useState({
@@ -42,7 +43,7 @@ export const Register = () => {
   };
   return (
     <>
-      <Container>
+      <Container fluid className="contenido registerDesign">
         <Form onSubmit={handlerSend} method="post">
           <Inputs
             placeholder={"Nombre"}
@@ -82,9 +83,11 @@ export const Register = () => {
             handler={inputHandler}
           />
 
-          <Button type="submit" variant="primary">
-            Enviar
-          </Button>
+          <p className="text-center">
+            <Button type="submit" variant="secondary">
+              Enviar
+            </Button>
+          </p>
         </Form>
       </Container>
     </>

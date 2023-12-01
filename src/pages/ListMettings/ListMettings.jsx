@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userDetails } from "../userSlice";
 import { useNavigate } from "react-router-dom";
@@ -88,76 +88,81 @@ export const ListMeetings = () => {
 
   return (
     <>
-      <Container>
-        <p className="text-center py-3">
-          <Button
-            variant="secondary"
-            onClick={() => navigate("/mettings/addMettings")}
-          >
-            Añadir cita
-          </Button>
-        </p>
-      </Container>
-
-      <Container>
-        <Form method="post" onSubmit={handlerSearch}>
-          <Row className="align-items-center">
-            <Col xs={12} md={2}>
-              <Form.Label>Desde</Form.Label>
-              <Inputs
-                placeholder={"Fecha naciemiento"}
-                type={"date"}
-                name={"dateMetting"}
-                handler={inputHandler}
-              />
-            </Col>
-            <Col xs={12} md={2}>
-              <Form.Label>Hasta</Form.Label>
-              <Inputs
-                placeholder={"Fecha naciemiento"}
-                type={"date"}
-                name={"dateMettingEnd"}
-                handler={inputHandler}
-              />
-            </Col>
-
-            <Col xs={12} md={3}>
-              <Form.Label>Tipo de intervención</Form.Label>
-              <CustomSelect
-                options={[
-                  { value: "tattoo", label: "Tattoo" },
-                  { value: "piercing", label: "Piercing" },
-                ]}
-                placeholder="Seleccione un tipo de intervención"
-                name="typeIntervention"
-                handler={inputHandler}
-                disabled={false} // o true según tus necesidades
-                className="tu-clase-estilo"
-              />
-            </Col>
-            <Col xs={12} md={3}>
-              <Form.Label>Tatuador:</Form.Label>
-              <CustomSelect
-                options={artist.map((art) => ({
-                  value: art._id,
-                  label: art.name,
-                }))}
-                placeholder="Seleccione un artista"
-                name="tattooArtist"
-                handler={inputHandler}
-                disabled={false}
-                className="tu-clase-estilo"
-              />
-            </Col>
-            <Col xs={12} md={2}>
-              <Button type="submit" variant="secondary">
-                Buscar
+      <Container className="contenido listadoCitasDesing">
+        <Row>
+          <Col>
+            <p className="text-center py-3">
+              <Button
+                variant="secondary"
+                onClick={() => navigate("/mettings/addMettings")}
+              >
+                Añadir cita
               </Button>
-            </Col>
-          </Row>
-        </Form>
-      </Container>
+            </p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Form method="post" onSubmit={handlerSearch}>
+              <Row className="align-items-center">
+                <Col xs={12} md={2}>
+                  <Form.Label>Desde</Form.Label>
+                  <Inputs
+                    placeholder={"Fecha naciemiento"}
+                    type={"date"}
+                    name={"dateMetting"}
+                    handler={inputHandler}
+                  />
+                </Col>
+                <Col xs={12} md={2}>
+                  <Form.Label>Hasta</Form.Label>
+                  <Inputs
+                    placeholder={"Fecha naciemiento"}
+                    type={"date"}
+                    name={"dateMettingEnd"}
+                    handler={inputHandler}
+                  />
+                </Col>
 
+                <Col xs={12} md={3}>
+                  <Form.Label>Tipo de intervención</Form.Label>
+                  <CustomSelect
+                    options={[
+                      { value: "tattoo", label: "Tattoo" },
+                      { value: "piercing", label: "Piercing" },
+                    ]}
+                    placeholder="Seleccione un tipo de intervención"
+                    name="typeIntervention"
+                    handler={inputHandler}
+                    disabled={false} // o true según tus necesidades
+                    className="tu-clase-estilo"
+                  />
+                </Col>
+                <Col xs={12} md={3}>
+                  <Form.Label>Tatuador:</Form.Label>
+                  <CustomSelect
+                    options={artist.map((art) => ({
+                      value: art._id,
+                      label: art.name,
+                    }))}
+                    placeholder="Seleccione un artista"
+                    name="tattooArtist"
+                    handler={inputHandler}
+                    disabled={false}
+                    className="tu-clase-estilo"
+                  />
+                </Col>
+                <Col xs={12} md={2}>
+                  <Button type="submit" variant="secondary">
+                    Buscar
+                  </Button>
+                </Col>
+              </Row>
+            </Form>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
       {mettingsAfterFilter.length > 0 ? (
         <div className="citasGeneral">
           <h3>FILTRADO CITAS</h3>
@@ -197,15 +202,14 @@ export const ListMeetings = () => {
 
                       <p>Precio: {meet.price}</p>
                       <p className="text-center">
-                        
                         <Button
-                        value={meet._id}
-                        variant="secondary"
-                        onClick={(e) => handleDetailMetting(e)}
-                      >
-                        Editar
-                      </Button>
-                        </p>
+                          value={meet._id}
+                          variant="secondary"
+                          onClick={(e) => handleDetailMetting(e)}
+                        >
+                          Editar
+                        </Button>
+                      </p>
                     </div>
                   );
                 })}
@@ -242,6 +246,10 @@ export const ListMeetings = () => {
           )}
         </div>
       )}
+          </Col>
+        </Row>
+      </Container>
+
     </>
   );
 };

@@ -24,7 +24,7 @@ export const Header = () => {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
         <Container>
           <Navbar.Brand href="/">Ink Masters</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />

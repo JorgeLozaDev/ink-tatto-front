@@ -1,7 +1,8 @@
 .home {
   background-image: url("../../../public/img/shop.jpg");
   background-size: cover;
-  height: 92vh;
+  /* height: 92vh; */
+  height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
 }
