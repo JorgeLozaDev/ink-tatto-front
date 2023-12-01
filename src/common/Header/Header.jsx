@@ -3,19 +3,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, userDetails } from "../../pages/userSlice";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import { useEffect, useState } from "react";
 
 export const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [decode, setDecode] = useState();
+
   const handlerLogOut = () => {
     dispatch(logout({ credentials: "" }));
     navigate("/");
   };
   const token = useSelector(userDetails);
-  if (token.credentials) {
-    const decode = jwtDecode(token.credentials);
-    // console.log(decode);
-  }
+
+  useEffect(() => {
+    if (token.credentials != "") {
+      setDecode(jwtDecode(token.credentials));
+    }
+  }, [token]);
+
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -27,18 +33,23 @@ export const Header = () => {
 
             {token.credentials != "" ? (
               <Nav>
-                <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
+                <NavDropdown title="Menú" id="collasible-nav-dropdown">
                   <NavDropdown.Item href="/profile">Perfil</NavDropdown.Item>
+
                   <NavDropdown.Item href="/mettings">Citas</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3"></NavDropdown.Item>
                   <NavDropdown.Divider />
+
+                  {decode && decode.role == "superadmin" ? (
+                    <>
+                      <NavDropdown.Item href="/admin/listusers">
+                        Lista de usuarios
+                      </NavDropdown.Item>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                   <NavDropdown.Item onClick={handlerLogOut}>
                     Log out
-                  </NavDropdown.Item>
-                </NavDropdown>
-                <NavDropdown title="admin" id="collasible-nav-dropdown">
-                  <NavDropdown.Item href="/admin/listusers">
-                    Lista de usuarios
                   </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
