@@ -39,7 +39,7 @@ export const updateProfile = async (endpoint, token, data) => {
   };
   // console.log(info)
   const headers = {
-    Authorization: "Bearer " + token,
+    Authorization: "Bearer " + token.credentials,
   };
 
   const updateUser = await axios.put(`${URL}${endpoint}`, info, { headers });

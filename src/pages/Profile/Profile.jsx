@@ -41,9 +41,21 @@ export const Profile = () => {
     updateProfile("user/updateProfile", token, userData)
       .then((dat) => {
         console.log("entro");
+        setEdit(false);
       })
       .catch((e) => console.log(e.response));
     event.preventDefault();
+  };
+
+  const formatDateTime = (dateTimeString) => {
+    const options = {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    };
+
+    const dateTime = new Date(dateTimeString);
+    return dateTime.toLocaleString("es-ES", options);
   };
 
   return (
@@ -88,9 +100,11 @@ export const Profile = () => {
               value={formattedDate}
               handler={handleChange}
             />
-            <Button type="submit" variant="primary">
-              Enviar
-            </Button>
+            <p className="text-center">
+              <Button type="submit" variant="secondary">
+                Enviar
+              </Button>
+            </p>
           </Form>
         ) : userData.name ? (
           <div className="box">
@@ -98,7 +112,7 @@ export const Profile = () => {
             <p>Apellidos: {userData.lastname}</p>
             <p>Email: {userData.email}</p>
             <p>Nombre de usuario: {userData.username}</p>
-            <p>Fecha de cumpleaños: {userData.birthday}</p>
+            <p>Fecha de cumpleaños: {formatDateTime(userData.birthday)}</p>
             <p className="text-center">
               <Button variant="secondary" onClick={handleEditar}>
                 Editar
