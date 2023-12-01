@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userDetails } from "../userSlice";
 import { useNavigate } from "react-router-dom";
@@ -186,22 +186,26 @@ export const ListMeetings = () => {
           {nextMeetings.length > 0 ? (
             <div className="citasGeneral">
               <h3>PRÓXIMAS CITAS</h3>
-              <div className="cajasCitas box">
+              <div className="cajasCitas ">
                 {nextMeetings.map((meet) => {
                   return (
-                    <div key={meet._id}>
+                    <div key={meet._id} className="box">
                       <p>Artista: {meet.tattooArtist}</p>
                       <p>Fecha inicio: {formatDateTime(meet.dateMetting)}</p>
                       <p>Fecha fin: {formatDateTime(meet.dateMettingEnd)}</p>
                       <p>Tipo intervención: {meet.typeIntervention}</p>
 
                       <p>Precio: {meet.price}</p>
-                      <Button
+                      <p className="text-center">
+                        
+                        <Button
                         value={meet._id}
+                        variant="secondary"
                         onClick={(e) => handleDetailMetting(e)}
                       >
                         Editar
                       </Button>
+                        </p>
                     </div>
                   );
                 })}

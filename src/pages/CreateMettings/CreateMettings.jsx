@@ -10,6 +10,7 @@ import {
   allArtistActives,
   createMetting,
 } from "../../services/apiCalls";
+import "./CreateMettings.css";
 
 export const CreateMettings = () => {
   const token = useSelector(userDetails);
@@ -83,7 +84,8 @@ export const CreateMettings = () => {
   // console.log(dataForm);
   return (
     <>
-      <Container>
+      <Container className="contenido cajaAgregarCita">
+        <h3>Añade los datos de la cita</h3>
         <Form onSubmit={handlerLogin} method="post">
           <Inputs
             placeholder={"Fecha naciemiento"}
@@ -129,14 +131,15 @@ export const CreateMettings = () => {
               <p>Sin información</p>
             </div>
           )}
-
-          <Button
-            type="submit"
-            variant="primary"
-            disabled={isValid ? false : true}
-          >
-            Enviar
-          </Button>
+          <p className="text-center">
+            <Button
+              type="submit"
+              variant="secondary"
+              disabled={isValid ? false : true}
+            >
+              Enviar
+            </Button>
+          </p>
         </Form>
       </Container>
     </>

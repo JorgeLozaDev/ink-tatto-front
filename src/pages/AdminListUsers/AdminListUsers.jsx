@@ -11,6 +11,9 @@ export const AdminListUsers = () => {
   const token = useSelector(userDetails);
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalUsers, setTotalUsers] = useState(0);
 
   const decoded = jwtDecode(token.credentials);
 
@@ -19,14 +22,17 @@ export const AdminListUsers = () => {
       navigate("/");
     }
 
-    getAllUsers("user", token)
+    getAllUsers(`user?page=${currentPage}&limit=5`, token)
       .then((a) => {
-        // console.log(a.data.users);
+        // console.log(a.data);
         setUsers(a.data.users);
+        setCurrentPage(a.data.currentPage);
+        setTotalPages(a.data.totalPages);
+        setTotalUsers(a.data.totalUsers);
       })
       .catch((e) => console.log(e));
     // console.log(users);
-  }, []);
+  }, [currentPage]);
 
   const handleDetailMetting = (e) => {
     // dispatch(detailMettingId({ idMetting: e.target.value }));
@@ -55,6 +61,30 @@ export const AdminListUsers = () => {
                 </div>
               );
             })}
+          </div>
+          <div>
+            <button
+              onClick={() =>
+                setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))
+              }
+              disabled={currentPage === 1}
+            >
+              Previous Page
+            </button>
+
+            <span>
+              {" "}
+              Page {currentPage} of {totalPages}{" "}
+            </span>
+
+            <button
+              onClick={() =>
+                setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages))
+              }
+              disabled={currentPage === totalPages}
+            >
+              Next Page
+            </button>
           </div>
         </div>
       ) : (

@@ -12,6 +12,7 @@ import {
   updateMetting,
 } from "../../services/apiCalls";
 import { removeIdMetting } from "../mettingSlice";
+import "./DetailMetting.css"
 
 export const DetailMetting = () => {
   const token = useSelector(userDetails);
@@ -110,10 +111,10 @@ export const DetailMetting = () => {
     : "";
   return (
     <>
-      <Container>
+      <Container className="contenido">
         <Form method="post" onSubmit={handlerSubmit}>
           <Inputs
-            placeholder={"Fecha naciemiento"}
+            placeholder={"Fecha naciemiento"} 
             type={"datetime-local"}
             min={startDate}
             name={"dateMetting"}
