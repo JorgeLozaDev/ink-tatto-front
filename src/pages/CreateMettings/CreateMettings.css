@@ -5,3 +5,9 @@
   flex-direction: column;
   gap: 1em;
 }
+
+.cajaAgregarCita div {
+  border: 1px solid var(--black);
+  border-radius: var(--border-rad);
+  padding: 0.5em 1em;
+}

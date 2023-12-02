@@ -5,14 +5,20 @@ import Inputs from "../../common/Input/Input";
 import { useSelector } from "react-redux";
 import { userDetails } from "../userSlice";
 import "./Profile.css";
+import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
   const [userData, setUserData] = useState({});
   const [edit, setEdit] = useState(false);
+  const navigate = useNavigate();
 
   const token = useSelector(userDetails);
 
   useEffect(() => {
+    if (token.credentials == "") {
+      navigate("/");
+    }
+
     profileUser("user/profile", token.credentials)
       .then((e) => {
         setUserData(e.data);

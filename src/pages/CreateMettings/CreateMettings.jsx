@@ -25,7 +25,7 @@ export const CreateMettings = () => {
   const [isValid, setIsValid] = useState(true);
 
   useEffect(() => {
-    if (token.credentials.length == 0) {
+    if (token.credentials == "") {
       navigate("/");
     }
 
@@ -86,7 +86,7 @@ export const CreateMettings = () => {
     <>
       <Container className="contenido cajaAgregarCita">
         <h3>Añade los datos de la cita</h3>
-        <Form onSubmit={handlerLogin} method="post">
+        <Form onSubmit={handlerLogin} method="post" className="">
           <Inputs
             placeholder={"Fecha naciemiento"}
             type={"datetime-local"}
