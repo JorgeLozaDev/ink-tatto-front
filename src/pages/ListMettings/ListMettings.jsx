@@ -19,6 +19,7 @@ export const ListMeetings = () => {
   const [pastMeetings, setPastMettings] = useState([]);
   const dispatch = useDispatch(mettingDetails);
   const [mettingsAfterFilter, setMettingsAfterFilter] = useState([]);
+  
 
   const [dataForm, setDataForm] = useState({
     dateMetting: "",
