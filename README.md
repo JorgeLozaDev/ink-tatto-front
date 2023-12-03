@@ -5,11 +5,11 @@ Es una pagina web, en la cual te tienes que registrar y una vez dentro podras ag
 ## Construido con 🛠️
 
 * [BOOTSTRAP](https://getbootstrap.com/) - Usado para la estructura base de la web y el responsive
-* [REACT](https://getbootstrap.com/) 
-* [AXIOS](https://getbootstrap.com/) 
-* [JWT-DECODE](https://getbootstrap.com/) 
-* [REACT-REDUX](https://getbootstrap.com/) 
-* [REACT-ROUTER-DOM](https://getbootstrap.com/)     
+* [REACT](https://es.react.dev/) 
+* [AXIOS](https://axios-http.com/es/docs/intro) 
+* [JWT-DECODE](https://www.npmjs.com/package/jwt-decode) 
+* [REACT-REDUX](https://es.redux.js.org/) 
+* [REACT-ROUTER-DOM](https://www.npmjs.com/package/react-router-dom)     
 
 ## Wiki 📖
 
