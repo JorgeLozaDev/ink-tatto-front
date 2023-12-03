@@ -9,12 +9,16 @@ import { useDispatch } from "react-redux";
 import { login } from "../userSlice";
 import { useSelector } from "react-redux";
 import { userDetails } from "../userSlice";
-import "./Login.css"
+import "./Login.css";
+import CustomPopup from "../../common/CustomPopup/CustomPopup";
 
 export const Login = () => {
   const navigate = useNavigate();
   const token = useSelector(userDetails);
   const dispatch = useDispatch();
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupTitle, setPopupTitle] = useState("");
+  const [popupContent, setPopupContent] = useState("");
 
   const [logindata, setLoginData] = useState({
     email: "",
@@ -35,7 +39,6 @@ export const Login = () => {
   }, []);
 
   useEffect(() => {}, [logindata]);
-  
 
   const handlerLogin = (event) => {
     loginUser("user/login", logindata)
@@ -43,12 +46,25 @@ export const Login = () => {
         dispatch(login({ credentials: dat.data.token }));
         navigate("/profile");
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        // console.log(e);
+        handleServerError(e);
+      });
     event.preventDefault();
+  };
+
+  const handleServerError = (error) => {
+    setPopupTitle("Error");
+    setPopupContent(error.response.data.message || "Hubo un error del servidor.");
+    setShowPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
   };
   return (
     <>
-      <Container  fluid className="contenido login loginbg">
+      <Container fluid className="contenido login loginbg">
         <Form onSubmit={handlerLogin} method="post">
           <Inputs
             placeholder={"Email"}
@@ -67,6 +83,12 @@ export const Login = () => {
           </Button>
         </Form>
       </Container>
+      <CustomPopup
+        show={showPopup}
+        onHide={handleClosePopup}
+        title={popupTitle}
+        content={popupContent}
+      />
     </>
   );
 };

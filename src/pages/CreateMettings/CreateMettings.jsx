@@ -11,6 +11,7 @@ import {
   createMetting,
 } from "../../services/apiCalls";
 import "./CreateMettings.css";
+import CustomPopup from "../../common/CustomPopup/CustomPopup";
 
 export const CreateMettings = () => {
   const token = useSelector(userDetails);
@@ -23,6 +24,9 @@ export const CreateMettings = () => {
   });
   const [artist, setArtist] = useState([]);
   const [isValid, setIsValid] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupTitle, setPopupTitle] = useState("");
+  const [popupContent, setPopupContent] = useState("");
 
   useEffect(() => {
     if (token.credentials == "") {
@@ -75,13 +79,39 @@ export const CreateMettings = () => {
             console.log(met);
             navigate("/mettings");
           })
-          .catch((e) => console.log(e));
+          .catch((e) => {
+            console.log(e);
+            handleServerError(e);
+          });
       })
-      .catch((e) => console.log(e.response.data));
+      .catch((e) => {
+        console.log(e.response.data);
+        handleServerError(e);
+      });
     event.preventDefault();
     // event.preventDefault();
   };
-  // console.log(dataForm);
+
+  const handleServerError = (error) => {
+    setPopupTitle("Error");
+    if (error.response.data.missingFields) {
+      setPopupContent(
+        error.response.data.message +
+          ": " +
+          error.response.data.missingFields || "Hubo un error del servidor."
+      );
+    } else {
+      setPopupContent(
+        error.response.data.message || "Hubo un error del servidor."
+      );
+    }
+    setShowPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
+
   return (
     <>
       <Container className="contenido cajaAgregarCita">
@@ -142,6 +172,12 @@ export const CreateMettings = () => {
           </p>
         </Form>
       </Container>
+      <CustomPopup
+        show={showPopup}
+        onHide={handleClosePopup}
+        title={popupTitle}
+        content={popupContent}
+      />
     </>
   );
 };

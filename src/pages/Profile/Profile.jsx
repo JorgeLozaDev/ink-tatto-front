@@ -6,11 +6,15 @@ import { useSelector } from "react-redux";
 import { userDetails } from "../userSlice";
 import "./Profile.css";
 import { useNavigate } from "react-router-dom";
+import CustomPopup from "../../common/CustomPopup/CustomPopup";
 
 export const Profile = () => {
   const [userData, setUserData] = useState({});
   const [edit, setEdit] = useState(false);
   const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupTitle, setPopupTitle] = useState("");
+  const [popupContent, setPopupContent] = useState("");
 
   const token = useSelector(userDetails);
 
@@ -23,7 +27,10 @@ export const Profile = () => {
       .then((e) => {
         setUserData(e.data);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        console.log(e);
+        handleServerError(e);
+      });
   }, []);
 
   const handleEditar = (e) => {
@@ -46,10 +53,12 @@ export const Profile = () => {
   const handlerSubmit = (event) => {
     updateProfile("user/updateProfile", token, userData)
       .then((dat) => {
-        console.log("entro");
         setEdit(false);
       })
-      .catch((e) => console.log(e.response));
+      .catch((e) => {
+        console.log(e.response);
+        handleServerError(e);
+      });
     event.preventDefault();
   };
 
@@ -64,6 +73,25 @@ export const Profile = () => {
     return dateTime.toLocaleString("es-ES", options);
   };
 
+  const handleServerError = (error) => {
+    setPopupTitle("Error");
+    if (error.response.data.missingFields) {
+      setPopupContent(
+        error.response.data.message +
+          ": " +
+          error.response.data.missingFields || "Hubo un error del servidor."
+      );
+    } else {
+      setPopupContent(
+        error.response.data.message || "Hubo un error del servidor."
+      );
+    }
+    setShowPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
   return (
     <>
       <Container fluid className="contenido dataProfile">
@@ -131,6 +159,12 @@ export const Profile = () => {
           </div>
         )}
       </Container>
+      <CustomPopup
+        show={showPopup}
+        onHide={handleClosePopup}
+        title={popupTitle}
+        content={popupContent}
+      />
     </>
   );
 };

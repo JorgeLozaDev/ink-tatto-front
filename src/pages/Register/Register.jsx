@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../userSlice";
 import "./Register.css";
+import CustomPopup from "../../common/CustomPopup/CustomPopup";
 
 export const Register = () => {
   const [logindata, setLoginData] = useState({
@@ -20,6 +21,9 @@ export const Register = () => {
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupTitle, setPopupTitle] = useState("");
+  const [popupContent, setPopupContent] = useState("");
 
   const inputHandler = (value, name) => {
     setLoginData((prevData) => ({
@@ -36,10 +40,36 @@ export const Register = () => {
             dispatch(login({ credentials: dat.data.token }));
             navigate("/profile");
           })
-          .catch((e) => console.log(e));
+          .catch((e) => {
+            console.log(e);
+            handleServerError(e);
+          });
       })
-      .catch((e) => console.log(e.response.data));
+      .catch((e) => {
+        console.log(e.response.data);
+        handleServerError(e);
+      });
     event.preventDefault();
+  };
+
+  const handleServerError = (error) => {
+    setPopupTitle("Error");
+    if (error.response.data.missingFields) {
+      setPopupContent(
+        error.response.data.message +
+          ": " +
+          error.response.data.missingFields || "Hubo un error del servidor."
+      );
+    } else {
+      setPopupContent(
+        error.response.data.message || "Hubo un error del servidor."
+      );
+    }
+    setShowPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
   };
   return (
     <>
@@ -90,6 +120,12 @@ export const Register = () => {
           </p>
         </Form>
       </Container>
+      <CustomPopup
+        show={showPopup}
+        onHide={handleClosePopup}
+        title={popupTitle}
+        content={popupContent}
+      />
     </>
   );
 };
