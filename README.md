@@ -27,7 +27,7 @@ LOGIN
 En esta página introduciremos nuestro email y contraseña para poder acceder
 
 SINGUP
-![SINGUP](public/Screenshot_3.png)
+![SINGUP](public/Screenshot_3.png) 
 
 En esta página, rellenaremos los campos para poder crearnos una cuenta y poder acceder a la web
 
@@ -41,8 +41,8 @@ CITAS
 En esta página se mostrarán todas las citas que tengamos agendadas para futuro y también veremos nuestras citas anteriores, en esta página, también veremos un botón "Agregar cita" y un buscador que nos servira para filtrar las citas
 
 CITA DETALLE
-![CITADETALLE](public/Screenshot_.6png)
-En esta pagina veremos la cita seleccionada con toda la información relevante de esta.
+![CITADETALLE](public/Screenshot_6.png)
+En esta pagina veremos la cita seleccionada con toda la información relevante de esta. 
 
 ## Autores ✒️
 

@@ -111,7 +111,7 @@ export const DetailMetting = () => {
     : "";
   return (
     <>
-      <Container className="contenido">
+      <Container className="contenido detailMettingDesign">
         <Form method="post" onSubmit={handlerSubmit}>
           <Inputs
             placeholder={"Fecha naciemiento"} 
@@ -159,13 +159,16 @@ export const DetailMetting = () => {
               <p>Sin información</p>
             </div>
           )}
+          <p className="text-center">
           <Button
             type="submit"
-            variant="primary"
+            variant="secondary"
             disabled={isValid ? false : true}
           >
             Enviar
           </Button>
+
+          </p>
         </Form>
       </Container>
     </>

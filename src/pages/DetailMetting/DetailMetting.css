@@ -1,0 +1,13 @@
+.detailMettingDesign {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .detailMettingDesign div {
+    border: 1px solid var(--black);
+    border-radius: var(--border-rad);
+    padding: 0.5em 1em;
+  }
+  
